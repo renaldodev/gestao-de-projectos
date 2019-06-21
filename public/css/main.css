@@ -1,0 +1,18 @@
+@import url(css/fonts/material-design-icons/Materialicons-Regular.ttf);
+
+input.header-search-input {
+    border: 1px solid #869298;
+    color: rgba(0, 0, 0, 0.87);
+    background: rgba(230, 230, 230, 0.3);
+}
+input.header-search-input:hover,
+input.header-search-input:active,
+input.header-search-input:focus {
+    border: 1px solid #adadad;
+    border-bottom: 1px solid #adadad !important;
+    background: rgba(230, 230, 230, 0);
+}
+
+input.header-search-input::placeholder {
+    color: rgba(0, 0, 0, 0.87);
+}
