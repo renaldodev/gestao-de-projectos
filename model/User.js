@@ -4,13 +4,14 @@ const Schema = mongoose.Schema;
 
 const schemaUser = new Schema({
     nome:String,
-    sobrenome: String,
+    apelido: String,
     email:String,
+    password:String,
+    acesso:Number,
     data_at: {
         type: Date,
         default: Date.now
     },
-    acesso:Number
 });
 
 const User = mongoose.model('user', schemaUser);

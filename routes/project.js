@@ -1,26 +1,29 @@
 const express = require('express');
-const Projecto =require('./../model/Projecto');
+const Project = require('./../model/Project');
 const router = express.Router();
+const {isAuthenticated} = require('./../conf/Utils');
 
-/* GET users listing. */
-router.get('/',async function (req, res, next) {
-    res.json( await Projecto.find())
+router.get('/', async function (req, res, next) {
+    res.json(await Project.find())
 });
 
-router.post('/',async function (req, res, next) {
-    const project = new Projecto(req.body);
-    await project.save()
-    res.sendStatus(2000);
+router.post('/', isAuthenticated, async function (req, res, next) {
+    const project = new Project(req.body);
+    await project.save().then(() => res.sendStatus(200)).catch(() => res.sendStatus(500))
+
 });
 
-router.put('/project/:id', function (req, res, next) {
-     Projecto.updateOne({id:req.params.id},req.body);
-     res.sendStatus(2000);
+router.put('/:id', isAuthenticated, async function (req, res, next) {
+    await Project.updateOne({
+        _id: req.params.id
+    }, req.body).then(() => res.sendStatus(200)).catch(() => res.sendStatus(500))
 });
 
-router.delete('/project/:id', async function (req, res, next) {
-    const retorno= await Projecto.deleteOne({id:req.params.id})
-    res.json(retorno);
+router.delete('/:id', isAuthenticated, async function (req, res, next) {
+    await Project.deleteOne({
+        _id: req.params.id
+    }).then(() => res.sendStatus(200)).catch(() => res.sendStatus(500))
+
 });
 
 module.exports = router;
