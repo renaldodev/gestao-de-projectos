@@ -12,7 +12,7 @@ async function login({
         }).then(user => {
             if (!user) {
                 resolve({
-                    error: "Esta conta não existe"
+                    error: "This accont does not exist"
                 })
                 return;
             }
@@ -28,7 +28,7 @@ async function login({
                 return;
             }
             resolve({
-                error: "Alguma coisa correu mal, verifique os seus dados de login T.T"
+                error: "Some thing went wrong with your access login"
             })
         })
     })
